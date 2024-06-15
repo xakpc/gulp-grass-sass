@@ -310,6 +310,8 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { sum } = nativeBinding
+const { compileSass, compileSassFromFile, compileSassFromOptions } = nativeBinding
 
-module.exports.sum = sum
+module.exports.compileSass = compileSass
+module.exports.compileSassFromFile = compileSassFromFile
+module.exports.compileSassFromOptions = compileSassFromOptions
