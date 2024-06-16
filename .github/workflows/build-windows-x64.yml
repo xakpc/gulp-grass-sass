@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: build-${{ env.TARGET }}
+    name: build-x86_64-pc-windows-msvc
     env: 
       TARGET: x86_64-pc-windows-msvc
     runs-on: windows-latest
