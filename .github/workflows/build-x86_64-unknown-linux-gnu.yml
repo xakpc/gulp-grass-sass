@@ -39,7 +39,12 @@ jobs:
         shell: bash
 
       - name: Move Binaries
-        run: Test-Path "${{ github.workspace }}/${{ env.TARGET }}/*.node" && Move-Item -Path "${{ github.workspace }}/${{ env.TARGET }}/*.node" -Destination "${{ github.workspace }}"  
+        run: |
+          if (Test-Path "${{ github.workspace }}/${{ env.TARGET }}/*.node") {
+            Move-Item "${{ github.workspace }}/${{ env.TARGET }}/*.node" -Destination "${{ github.workspace }}" 
+          } else {
+            Write-Host "No .node files found to move."
+          }
         shell: pwsh
         
       - name: Upload artifacts
