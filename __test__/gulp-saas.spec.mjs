@@ -6,7 +6,8 @@ import path from 'path';
 import compile from '../main.js';
 
 function readExpectedOutput(expectedOutputFileName) {
-    return fs.readFileSync(getExpectedPath(expectedOutputFileName), 'utf8');
+    let output = fs.readFileSync(getExpectedPath(expectedOutputFileName), 'utf8');
+    return output.replace(/\r\n/g, '\n');;
 }
 
 function getExpectedPath(fileName) {
@@ -66,7 +67,7 @@ test('gulp compile invalid import', async (t) => {
     const compileSass = () => {
         return new Promise((resolve, reject) => {
             gulp.src('__test__/fixtures/scss/test-import-missing.scss')
-                .pipe(compile())
+                .pipe(compile().on('error', reject)) // Properly handle the error
                 .pipe(buffer())
                 .on('data', function (file) {
                     cssContent = file.contents.toString();
@@ -74,11 +75,14 @@ test('gulp compile invalid import', async (t) => {
                 .on('end', function () {
                     resolve(cssContent);
                 })
-                .on('error', reject);
+                .on('error', reject); 
         });
     };
 
-    cssContent = await compileSass();
-
-    t.is(cssContent.toString(), 'body div {\n  color: red;\n}\n\nbody a {\n  color: red;\n}\n');
+    try {
+        cssContent = await compileSass();
+        t.fail("Expected error")
+    } catch (error) {
+        t.true(error.message.includes('Can\'t find stylesheet to import'), 'Error message should contain "Can\'t find stylesheet to import"');
+    }
 });

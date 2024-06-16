@@ -51,15 +51,6 @@ function compile(options = {}) {
             sassOptions.outputStyle = SassSyntax.sass;
         }
 
-        // Ensure file's parent directory in the include path ???
-        //if (sassOptions.includePaths) {
-        //    if (typeof sassOptions.includePaths === 'string') {
-        //        sassOptions.includePaths = [sassOptions.includePaths];
-        //    }
-        //} else {
-        //    sassOptions.includePaths = [];
-        //}
-
         if (!sassOptions.includePaths) {
             sassOptions.includePaths = [];
         }
@@ -67,7 +58,6 @@ function compile(options = {}) {
         sassOptions.includePaths.unshift(file.base);
 
         try {
-            //console.log(sassOptions);
             let result = compileSassFromOptions(sassOptions);
 
             if (!result) {

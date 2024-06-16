@@ -8,7 +8,8 @@ function getFilePath(fileName) {
 }
 
 function readExpectedOutput(expectedOutputFileName) {
-    return fs.readFileSync(getExpectedPath(expectedOutputFileName), 'utf8');
+    let output = fs.readFileSync(getExpectedPath(expectedOutputFileName), 'utf8');
+    return output.replace(/\r\n/g, '\n');;
 }
 
 function getExpectedPath(fileName) {

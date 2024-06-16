@@ -1,4 +1,4 @@
-export { SassSyntax, SassOutputStyle } from './index.d.ts'; // Re-export the SassOptions interface
+export { SassSyntax, SassOutputStyle } from './index.d.ts'; // Re-export the SassOptions related interfaces
 
 export interface SassOptions {
     saasSyntax?: SassSyntax

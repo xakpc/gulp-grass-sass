@@ -52,8 +52,6 @@ pub fn compile_sass_from_file(file_path: String) -> Result<String, napi::Error> 
 
 #[napi]
 pub fn compile_sass_from_options(options: SassOptions) -> Result<String, napi::Error> {
-    println!("Input options: {:?}", options);    
-
     let mut grass_options = Options::default();
 
     // Add include paths if provided.
@@ -80,8 +78,6 @@ pub fn compile_sass_from_options(options: SassOptions) -> Result<String, napi::E
             SassSyntax::Scss => grass::InputSyntax::Scss      
       });
     }
-
-    println!("Options: {:?}", grass_options);
 
     // Compile from string if `data` is provided.
     if let Some(data) = options.data {

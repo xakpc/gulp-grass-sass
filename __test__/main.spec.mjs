@@ -6,7 +6,8 @@ import { SassSyntax, SassOutputStyle } from '../index.js';
 import fs from 'fs';
 
 function readExpectedOutput(expectedOutputFileName) {
-    return fs.readFileSync(getExpectedPath(expectedOutputFileName), 'utf8');
+    let output = fs.readFileSync(getExpectedPath(expectedOutputFileName), 'utf8');
+    return output.replace(/\r\n/g, '\n');;
 }
 
 function getExpectedPath(fileName) {
@@ -78,16 +79,3 @@ test('compile with good import', async (t) => {
 
     t.is(actual, expected);
 })
-
-// test is broken
-//test('compile with bad import', async (t) => {
-//    const options = {
-//        includePaths: [path.join('__test__', 'fixtures', 'scss')]
-//    };
-//    await testCompile(options, 'test-import.scss');
-//    //const error = await t.throwsAsync(async () => {
-        
-//    //}, { instanceOf: Error });
-
-//    //t.true(error.message.includes('Can\'t find stylesheet to import'), 'Error message should contain "Can\'t find stylesheet to import"');
-//})
