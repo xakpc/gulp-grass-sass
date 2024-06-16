@@ -36,5 +36,5 @@ jobs:
         uses: actions/upload-artifact@v4.3.3
         with:
           name: bindings-${{ env.TARGET }}
-          path: ${{ env.APP_NAME }}.*.node
+          path: ${{ env.TARGET }}/${{ env.APP_NAME }}.*.node
           if-no-files-found: error
