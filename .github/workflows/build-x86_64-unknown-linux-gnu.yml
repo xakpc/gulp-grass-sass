@@ -67,7 +67,7 @@ jobs:
           - target: x86_64-unknown-linux-gnu
             docker-image: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian
             
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.7  
       
