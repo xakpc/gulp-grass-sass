@@ -1,8 +1,8 @@
 {
   "name": "@xakpc/gulp-grass-sass",
   "version": "0.1.0",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "main.js",
+  "types": "main.d.ts",
   "napi": {
     "name": "gulp-grass-sass",
     "triples": {
@@ -15,7 +15,7 @@
     }
   },
   "license": "MIT",
-  "author": "xakpc",  
+  "author": "xakpc",
   "description": "Gulp plugin for compiling Sass files using grass Rust library",
   "dependencies": {
     "plugin-error": "2.0.1"

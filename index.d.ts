@@ -15,7 +15,7 @@ export const enum SassOutputStyle {
 export interface SassOptions {
   data?: string
   file?: string
-  saasSyntax?: SassSyntax
+  sassSyntax?: SassSyntax
   outputStyle?: SassOutputStyle
   includePaths?: Array<string>
 }

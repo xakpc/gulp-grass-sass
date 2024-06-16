@@ -30,7 +30,7 @@ pub enum SassOutputStyle {
 pub struct SassOptions {
   pub data: Option<String>,
   pub file: Option<String>,  
-  pub saas_syntax: Option<SassSyntax>,
+  pub sass_syntax: Option<SassSyntax>,
   pub output_style: Option<SassOutputStyle>,
   pub include_paths : Option<Vec<String>>,
 }
@@ -71,7 +71,7 @@ pub fn compile_sass_from_options(options: SassOptions) -> Result<String, napi::E
 	}
 
     // Set type of code (sass/scss) from intended syntax if provided.
-    if let Some(input_syntax) = options.saas_syntax {
+    if let Some(input_syntax) = options.sass_syntax {
         grass_options = grass_options.input_syntax(match input_syntax {
             SassSyntax::Css => grass::InputSyntax::Css,
             SassSyntax::Sass => grass::InputSyntax::Sass,

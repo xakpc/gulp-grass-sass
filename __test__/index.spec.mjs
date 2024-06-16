@@ -113,7 +113,7 @@ test('compileSassFromOptions with intendedSyntax', (t) => {
     const options = {
         data: 'a\n  b\n    color: red ',
         file: undefined,
-        saasSyntax: SassSyntax.Sass,
+        sassSyntax: SassSyntax.Sass,
     };
     const result = compileSassFromOptions(options);
     t.is(result, 'a b {\n  color: red;\n}\n'); 
