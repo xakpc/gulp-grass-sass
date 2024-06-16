@@ -1,0 +1,38 @@
+name: Build x86_64-pc-windows-msvc
+
+env:
+  DEBUG: napi:*
+  APP_NAME: gulp-grass-sass
+  TARGET: x86_64-pc-windows-msvc
+  
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: build-${{ env.TARGET }}
+    runs-on: windows-latest
+    steps:   
+      - uses: actions/checkout@v4.1.7
+      
+      - name: Install Node.JS
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version: 18
+          
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1.0.6
+        with:
+          target: ${{ env.TARGET }}
+                  
+      - uses: bahmutov/npm-install@v1.6.0
+      
+      - name: Build binaries
+        run: npm run build --target ${{ env.TARGET }}
+        
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4.3.3
+        with:
+          name: bindings-${{ env.TARGET }}
+          path: ${{ env.APP_NAME }}.*.node
+          if-no-files-found: error
