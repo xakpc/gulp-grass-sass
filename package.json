@@ -15,9 +15,16 @@
     }
   },
   "license": "MIT",
+  "author": "xakpc",  
+  "description": "Gulp plugin for compiling Sass files using grass Rust library",
+  "dependencies": {
+    "plugin-error": "2.0.1"
+  },
   "devDependencies": {
     "@napi-rs/cli": "^2.18.3",
-    "ava": "^6.0.1"
+    "ava": "^6.0.1",
+    "gulp": "^5.0.0",
+    "gulp-buffer": "0.0.2"
   },
   "ava": {
     "timeout": "3m"
@@ -33,5 +40,10 @@
     "test": "ava",
     "universal": "napi universal",
     "version": "napi version"
+  },
+  "optionalDependencies": {
+    "@xakpc/gulp-grass-sass-win32-arm64-msvc": "0.1.0",
+    "@xakpc/gulp-grass-sass-win32-x64-msvc": "0.1.0",
+    "@xakpc/gulp-grass-sass-win32-ia32-msvc": "0.1.0"
   }
 }

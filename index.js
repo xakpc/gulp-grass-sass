@@ -310,8 +310,10 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { compileSass, compileSassFromFile, compileSassFromOptions } = nativeBinding
+const { SassSyntax, SassOutputStyle, compileSass, compileSassFromFile, compileSassFromOptions } = nativeBinding
 
+module.exports.SassSyntax = SassSyntax
+module.exports.SassOutputStyle = SassOutputStyle
 module.exports.compileSass = compileSass
 module.exports.compileSassFromFile = compileSassFromFile
 module.exports.compileSassFromOptions = compileSassFromOptions

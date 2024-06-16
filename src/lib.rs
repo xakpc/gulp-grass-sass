@@ -6,13 +6,32 @@
 extern crate napi_derive;
 
 use std::path::Path;
-use grass::{Options, InputSyntax};
+use grass::Options;
+
+#[napi(string_enum)]
+#[derive(Debug, Default)]
+pub enum SassSyntax {
+  Sass,
+  Css,
+  #[default]
+  Scss,
+}
+
+#[napi(string_enum)]
+#[derive(Debug, Default)]
+pub enum SassOutputStyle {
+  #[default]
+  Expanded,
+  Compressed,
+}
 
 #[napi(object)]
+#[derive(Debug)]
 pub struct SassOptions {
   pub data: Option<String>,
   pub file: Option<String>,  
-  pub intended_syntax : Option<bool>,
+  pub saas_syntax: Option<SassSyntax>,
+  pub output_style: Option<SassOutputStyle>,
   pub include_paths : Option<Vec<String>>,
 }
 
@@ -33,6 +52,8 @@ pub fn compile_sass_from_file(file_path: String) -> Result<String, napi::Error> 
 
 #[napi]
 pub fn compile_sass_from_options(options: SassOptions) -> Result<String, napi::Error> {
+    println!("Input options: {:?}", options);    
+
     let mut grass_options = Options::default();
 
     // Add include paths if provided.
@@ -43,14 +64,25 @@ pub fn compile_sass_from_options(options: SassOptions) -> Result<String, napi::E
         }		
 	}
 
+    // Set output style if provided.
+    if let Some(output_style) = options.output_style {
+		grass_options = grass_options.style(match output_style {
+			SassOutputStyle::Expanded => grass::OutputStyle::Expanded,
+			SassOutputStyle::Compressed => grass::OutputStyle::Compressed
+		});
+	}
+
     // Set type of code (sass/scss) from intended syntax if provided.
-    if let Some(intended_syntax) = options.intended_syntax {
-        if intended_syntax { 
-            grass_options = grass_options.input_syntax(InputSyntax::Sass); }
-	    else {
-            grass_options = grass_options.input_syntax(InputSyntax::Scss); }
+    if let Some(input_syntax) = options.saas_syntax {
+        grass_options = grass_options.input_syntax(match input_syntax {
+            SassSyntax::Css => grass::InputSyntax::Css,
+            SassSyntax::Sass => grass::InputSyntax::Sass,
+            SassSyntax::Scss => grass::InputSyntax::Scss      
+      });
     }
-    
+
+    println!("Options: {:?}", grass_options);
+
     // Compile from string if `data` is provided.
     if let Some(data) = options.data {
         return grass::from_string(data, &grass_options)

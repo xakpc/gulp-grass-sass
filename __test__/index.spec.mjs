@@ -1,6 +1,19 @@
 import test from 'ava'
 import path from 'path';
-import { compileSass, compileSassFromFile, compileSassFromOptions } from '../index.js'
+import { compileSass, compileSassFromFile, compileSassFromOptions, SassSyntax } from '../index.js'
+import fs from 'fs';
+
+function getFilePath(fileName) {
+    return path.join('__test__', 'fixtures', 'scss', fileName);
+}
+
+function readExpectedOutput(expectedOutputFileName) {
+    return fs.readFileSync(getExpectedPath(expectedOutputFileName), 'utf8');
+}
+
+function getExpectedPath(fileName) {
+    return path.join('__test__', 'fixtures', 'expected', fileName);
+}
 
 test('compileSass from native', (t) => {
     t.is(compileSass('a { b { color: &; } }'), 'a b {\n  color: a b;\n}\n');
@@ -22,16 +35,12 @@ test('compileSass throws generic error when input is null', (t) => {
     }, { instanceOf: Error, code: 'GenericFailure' });
 })
 
-function getFilePath(fileName) {
-    return path.join('__test__', 'fixtures', fileName);
-}
-
 test('compileSassFromFile from native', (t) => {
-    t.is(compileSassFromFile(getFilePath('test.scss')), 'body div {\n  color: red;\n}\n');
+    t.is(compileSassFromFile(getFilePath('test.scss')), readExpectedOutput('test.css'));
 })
 
 test('compileSassFromFile with imports', (t) => {
-    t.is(compileSassFromFile(getFilePath('test-import.scss')), 'body div {\n  color: red;\n}\n\nbody a {\n  color: red;\n}\n');
+    t.is(compileSassFromFile(getFilePath('test-import.scss')), readExpectedOutput('test-import.css'));
 })
 
 test('compileSass throws error when file not found', (t) => {
@@ -84,7 +93,7 @@ test('compileSassFromOptions with file', (t) => {
         includePaths: []
     };
     const result = compileSassFromOptions(options);
-    t.is(result, 'body div {\n  color: red;\n}\n');
+    t.is(result, readExpectedOutput('test.css'));
 });
 
 // Test compiling SASS with include paths
@@ -92,21 +101,19 @@ test('compileSassFromOptions with includePaths', (t) => {
     const options = {
         data: '@import "variables"; a { b { color: $text-color; } }',
         file: undefined,
-        intendedSyntax: false,
-        includePaths: ['__test__/fixtures']
+        includePaths: ['__test__/fixtures/scss']
     };
     const result = compileSassFromOptions(options);
-    t.is(result, 'a b {\n  color: #333;\n}\n'); // Adjust the expected output based on your SASS content
+    t.is(result, 'a b {\n  color: #333;\n}\n'); 
 });
 
-// Test compiling SASS with intended syntax
+// Test compiling SASS with sass syntax
 test('compileSassFromOptions with intendedSyntax', (t) => {
     const options = {
-        data: 'a\n  b\n    color: red',
+        data: 'a\n  b\n    color: red ',
         file: undefined,
-        intendedSyntax: true,
-        includePaths: []
+        saasSyntax: SassSyntax.Sass,
     };
     const result = compileSassFromOptions(options);
-    t.is(result, 'a b {\n  color: red;\n}\n'); // Adjust the expected output based on your SASS content
+    t.is(result, 'a b {\n  color: red;\n}\n'); 
 });
