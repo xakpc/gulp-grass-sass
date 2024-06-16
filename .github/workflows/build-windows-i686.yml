@@ -1,0 +1,8 @@
+name: Build i686-pc-windows-msvc
+
+env:
+  DEBUG: napi:*
+  APP_NAME: gulp-grass-sass
+  
+on:
+  workflow_dispatch:
