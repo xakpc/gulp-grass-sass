@@ -1,0 +1,8 @@
+name: Build x86_64-unknown-linux-musl
+
+env:
+  DEBUG: napi:*
+  APP_NAME: gulp-grass-sass
+  
+on:
+  workflow_dispatch:
