@@ -1,0 +1,8 @@
+name: Build all targets
+
+env:
+  DEBUG: napi:*
+  APP_NAME: gulp-grass-sass
+  
+on:
+  workflow_dispatch:
