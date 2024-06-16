@@ -24,6 +24,7 @@ jobs:
       - name: Install Rust
         uses: actions-rs/toolchain@v1.0.6
         with:
+          toolchain: stable
           target: ${{ env.TARGET }}
                   
       - uses: bahmutov/npm-install@v1.6.0
