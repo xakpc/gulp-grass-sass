@@ -41,6 +41,8 @@ jobs:
           
   test:
     name: test-x86_64-pc-windows-msvc
+    needs:
+      - build
     env: 
       TARGET: x86_64-pc-windows-msvc
     strategy:
