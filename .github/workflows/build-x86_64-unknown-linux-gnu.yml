@@ -32,6 +32,10 @@ jobs:
       - name: Build binaries
         run: npm run build -- --target ${{ env.TARGET }}
 
+      - name: List packages
+        run: ls -L .
+        shell: bash
+
       - name: Move Binaries
         run: |
           [[ -d "${{ github.workspace }}/${{ env.TARGET }}" ]] && mv "${{ github.workspace }}/${{ env.TARGET }}/*.node" "${{ github.workspace }}/" 2>/dev/null       
