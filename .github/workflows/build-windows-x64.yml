@@ -32,8 +32,10 @@ jobs:
       - name: Build binaries
         run: npm run build --target ${{ env.TARGET }}
 
-      - name: List packages
-        run: ls -L .
+      - name: Show current location and list packages
+        run: |
+          echo "Current Location: $(pwd)"
+          ls -L .
         shell: bash
 
       - name: Move Binaries
