@@ -39,9 +39,8 @@ jobs:
         shell: bash
 
       - name: Move Binaries
-        run: |
-          [[ -d "${{ github.workspace }}/${{ env.TARGET }}" ]] && mv "${{ github.workspace }}/${{ env.TARGET }}/*.node" "${{ github.workspace }}/" 2>/dev/null       
-        shell: bash
+        run: Test-Path "${{ github.workspace }}/${{ env.TARGET }}/*.node" && Move-Item -Path "${{ github.workspace }}/${{ env.TARGET }}/*.node" -Destination "${{ github.workspace }}"  
+        shell: pwsh
         
       - name: Upload artifacts
         uses: actions/upload-artifact@v4.3.3
