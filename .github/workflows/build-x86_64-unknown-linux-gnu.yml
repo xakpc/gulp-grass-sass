@@ -53,3 +53,56 @@ jobs:
           name: bindings-${{ env.TARGET }}
           path: ${{ github.workspace }}/**/*.node
           if-no-files-found: error
+
+  test:
+    name: test-x86_64-unknown-linux-gnu
+    needs:
+      - build
+    env: 
+      TARGET: x86_64-unknown-linux-gnu
+    strategy:
+      matrix:
+        node: ['18', '20']
+        include:
+          - target: x86_64-unknown-linux-gnu
+            docker-image: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian
+            
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4.1.7  
+      
+      - name: Download artifacts
+        uses: actions/download-artifact@v4.1.7
+        with:
+          name: bindings-${{ env.TARGET }}
+          path: .              
+
+      - name: Install Node.JS
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4.1.7
+        with:
+          name: bindings-${{ env.target }}
+          path: .
+
+      - name: Load Node.js version and Docker Image
+        run: |
+          echo "NODE_VERSION=${{ matrix.node }}" >> $GITHUB_ENV
+          echo "DOCKER_IMAGE=${{ matrix.docker-image }}" >> $GITHUB_ENV
+
+      - name: Run tests in Docker
+        run: |
+          docker run --rm -v "${{ github.workspace }}":/usr/src/app -w /usr/src/app $DOCKER_IMAGE /bin/sh -c "
+            npm install &&
+            npm run test
+          "
+
