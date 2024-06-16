@@ -30,7 +30,7 @@ jobs:
       - uses: bahmutov/npm-install@v1.6.0
       
       - name: Build binaries
-        run: npm run build --target ${{ env.TARGET }}
+        run: npm run build -- --target ${{ env.TARGET }}
         
       - name: Upload artifacts
         uses: actions/upload-artifact@v4.3.3
