@@ -49,7 +49,10 @@ test('compileSass throws error when file not found', (t) => {
         compileSassFromFile(getFilePath('not-existing.scss'));
     }, { instanceOf: Error, code: 'GenericFailure' });
 
-    t.true(error.message.includes('The system cannot find the file specified'), 'Error message should contain "The system cannot find the file specified"');
+    t.true(
+        error.message.includes('The system cannot find the file specified'),
+        `Error message should contain "The system cannot find the file specified". Actual message: "${error.message}"`
+    );
 })
 
 test('compileSass throws error when import not found', (t) => {
