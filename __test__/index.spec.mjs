@@ -50,7 +50,7 @@ test('compileSass throws error when file not found', (t) => {
     }, { instanceOf: Error, code: 'GenericFailure' });
 
     t.true(
-        error.message.includes('The system cannot find the file specified'),
+        error.message.includes('The system cannot find the file specified') || error.message.includes('No such file or directory'),
         `Error message should contain "The system cannot find the file specified". Actual message: "${error.message}"`
     );
 })
