@@ -67,9 +67,8 @@ jobs:
     
     strategy:
       matrix:
-        node:
-          - '18'
-          - '20'
+        node: ['18','20']
+        os: [windows-latest,macos-12,macos-latest]
         include:
           - target: x86_64-pc-windows-msvc
             os: windows-latest            
