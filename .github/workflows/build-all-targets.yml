@@ -65,11 +65,11 @@ jobs:
       matrix:
         node: ['18','20']
         include:
-          - host: macos-latest
+          - os: macos-latest
             target: x86_64-apple-darwin
-          - host: windows-latest
+          - os: windows-latest
             target: x86_64-pc-windows-msvc
-    runs-on: windows-latest
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4.1.7    
       
