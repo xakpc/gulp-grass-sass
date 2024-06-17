@@ -112,16 +112,16 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - node_version: '18'
+          - node: '18'
             target: x86_64-unknown-linux-gnu
             docker_image: "node:18-buster"
-          - node_version: '18'
+          - node: '18'
             target: x86_64-unknown-linux-musl
             docker_image: "node:18-alpine"
-          - node_version: '20'
+          - node: '20'
             target: x86_64-unknown-linux-gnu
             docker_image: "node:20-buster"
-          - node_version: '20'
+          - node: '20'
             target: x86_64-unknown-linux-musl
             docker_image: "node:20-alpine"                      
     container:
