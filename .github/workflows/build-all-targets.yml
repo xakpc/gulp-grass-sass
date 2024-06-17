@@ -138,7 +138,6 @@ jobs:
           name: bindings-${{ env.TARGET }}
           path: .          
       - name: List packages
-        run: ls -R .
-        shell: bash        
+        run: ls -R .      
       - name: Test bindings
         run: npm run test
