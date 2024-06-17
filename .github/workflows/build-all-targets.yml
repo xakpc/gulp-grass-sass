@@ -56,20 +56,23 @@ jobs:
           if-no-files-found: error
 
   test-macos-windows:
-    name: test-${{ matrix.target }}
+    name: test-${{ matrix.target }}-node${{ matrix.node }}
     needs:
       - build
+      
     env: 
       TARGET: ${{ matrix.target }}
+
+    runs-on: ${{ matrix.os }}
+    
     strategy:
       matrix:
         node: ['18','20']
         include:
-          - os: macos-latest
-            target: x86_64-apple-darwin
           - os: windows-latest
             target: x86_64-pc-windows-msvc
-    runs-on: ${{ matrix.os }}
+          - os: macos-latest
+            target: x86_64-apple-darwin
     steps:
       - uses: actions/checkout@v4.1.7    
       
