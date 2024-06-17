@@ -126,7 +126,12 @@ jobs:
       image: ${{ matrix.docker_image }}
     steps:
       - uses: actions/checkout@v4.1.7       
-      - uses: bahmutov/npm-install@v1.6.0      
+      - name: NPM Install with Caching (non-Alpine)
+        if: "!contains(matrix.docker_image, 'alpine')"
+        uses: bahmutov/npm-install@v1.6.0
+      - name: NPM Install without Caching (Alpine)
+        if: "contains(matrix.docker_image, 'alpine')"
+        run: npm install    
       - name: Download artifacts
         uses: actions/download-artifact@v4.1.7
         with:
