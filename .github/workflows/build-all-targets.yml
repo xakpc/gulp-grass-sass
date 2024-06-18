@@ -173,6 +173,8 @@ jobs:
         with:
           name: bindings-${{ env.TARGET }}
           path: .          
+      - name: Check GLIBC version
+        run: ldd --version
       - name: List packages
         run: ls -R .      
       - name: Test bindings
