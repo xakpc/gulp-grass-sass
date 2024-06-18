@@ -72,7 +72,7 @@ This project aims to provide a fast and efficient way to compile SCSS to CSS usi
 - **Error Handling:** Provides informative error messages to help you debug issues quickly.
 - **Flexible Configuration:** Supports custom paths and configuration options to fit your project needs.
 
-This project is designed to enhance your development experience by combining the power of modern JavaScript tools with the performance benefits of Rust.
+This project is designed to enhance your development experience in Visual Studio by combining the power of modern JavaScript tools with the performance benefits of Rust.
 
 ### Built With
 
@@ -91,6 +91,10 @@ This project is built primarily to be used in Visual Studio with Task Runner Exp
 You either need to have Visual Studio with the built-in Task Runner Explorer or gulp-cli to run Gulp from the terminal.
 
 ### Installation
+
+
+
+
 
 1. Open the **Terminal** in Visual Studio from the menu: **View** > **Terminal**.
 1. Navigate to your project directory in the Terminal.
