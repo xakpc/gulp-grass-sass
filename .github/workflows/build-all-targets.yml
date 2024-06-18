@@ -1,4 +1,4 @@
-name: Build, test all targets
+name: Build, Test, Publish
 
 env:
   DEBUG: napi:*
