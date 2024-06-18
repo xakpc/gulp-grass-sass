@@ -192,9 +192,6 @@ jobs:
       - test-macos-windows
       - test-ubuntu
       - test-linux-docker   
-    permissions:
-      id-token: write
-      contents: read
     strategy:
       matrix:
         include:
@@ -224,6 +221,7 @@ jobs:
         with:
           package: ${{ matrix.package }}
           token:  ${{ secrets.NPM_TOKEN }}
+          access: public          
           
   publish:
     name: Publish gulp-grass-sass to NPM
@@ -251,3 +249,5 @@ jobs:
         uses: JS-DevTools/npm-publish@v3.1.1
         with:
           token: ${{ secrets.NPM_TOKEN }}
+          access: public
+          provenance: true

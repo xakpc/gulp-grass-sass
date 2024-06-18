@@ -56,9 +56,5 @@
   "homepage": "https://github.com/xakpc/gulp-grass-sass",
   "bugs": {
     "url": "https://github.com/xakpc/gulp-grass-sass/issues"
-  },
-  "publishConfig": {
-    "access": "public",
-    "provenance": true
   }
 }
