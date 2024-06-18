@@ -1,8 +1,0 @@
-name: Build aarch64-apple-darwin
-
-env:
-  DEBUG: napi:*
-  APP_NAME: gulp-grass-sass
-  
-on:
-  workflow_dispatch:
