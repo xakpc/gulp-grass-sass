@@ -19,7 +19,7 @@
 <h3 align="center">gulp-grass-sass</h3>
 
   <p align="center">
-    Sass plugin for <a href="https://gulpjs.com/">Gulp</a> utilizing the speed and performance of <a href="https://github.com/github_username/repo_name">Grass</a> rust library to compile SASS to CSS.
+    Sass plugin for <a href="https://gulpjs.com/">Gulp</a> utilizing the speed and performance of <a href="https://github.com/github_username/repo_name">Grass</a> rust library to compile SASS to CSS 8x faster than gulp-sass.
     <br />
     <a href="#getting-started"><strong>Start here »</strong></a>
     <br />
