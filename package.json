@@ -8,8 +8,7 @@
     "triples": {
       "defaults": false,
       "additional": [
-        "aarch64-apple-darwin",
-        "universal-apple-darwin"
+        "aarch64-apple-darwin"
       ]
     }
   },
