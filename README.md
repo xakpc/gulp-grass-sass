@@ -89,13 +89,16 @@ This project is built primarily to be used in Visual Studio with Task Runner Exp
 
 ### Prerequisites
 
-You either need to have Visual Studio with the built-in Task Runner Explorer or gulp-cli to run Gulp from the terminal.
+You need Visual Studio with the built-in Task Runner Explorer or `gulp-cli` to run Gulp from the terminal.
+
+Due to the nature of Rust being compiled into native libraries, this package is built specifically for the following architectures. Please ensure your system matches one of the following to use this package:
+
+- darwin-arm64 (macOS on ARM, e.g., M1/M2 Macs)
+- darwin-x64 (macOS on Intel x86_64)
+- linux-x64-gnu (Linux on Intel/AMD x86_64)
+- win32-x64-msvc (Windows 64-bit on Intel/AMD with MSVC)
 
 ### Installation
-
-
-
-
 
 1. Open the **Terminal** in Visual Studio from the menu: **View** > **Terminal**.
 1. Navigate to your project directory in the Terminal.
