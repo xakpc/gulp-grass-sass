@@ -192,6 +192,9 @@ jobs:
       - test-macos-windows
       - test-ubuntu
       - test-linux-docker   
+    permissions:
+      id-token: write
+      contents: read
     strategy:
       matrix:
         include:
@@ -226,7 +229,10 @@ jobs:
     name: Publish gulp-grass-sass to NPM
     runs-on: ubuntu-latest
     needs:
-      - publish-dependencies   
+      - publish-dependencies
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - uses: actions/checkout@v4.1.7       
       - uses: actions/setup-node@v4.0.2
