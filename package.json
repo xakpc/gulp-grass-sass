@@ -5,8 +5,7 @@
   "types": "main.d.ts",
   "napi": {
     "name": "gulp-grass-sass",
-    "triples": {
-      "defaults": false,
+    "triples": {      
       "additional": [
         "aarch64-apple-darwin"
       ]
