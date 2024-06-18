@@ -220,8 +220,7 @@ jobs:
         uses: JS-DevTools/npm-publish@v3.1.1
         with:
           package: ${{ matrix.package }}
-          token:  ${{ secrets.NPM_TOKEN }}          
-          dry-run: true
+          token:  ${{ secrets.NPM_TOKEN }}
           
   publish:
     name: Publish gulp-grass-sass to NPM
@@ -245,5 +244,4 @@ jobs:
       - name: NPM Publish
         uses: JS-DevTools/npm-publish@v3.1.1
         with:
-          token: ${{ secrets.NPM_TOKEN }}          
-          dry-run: true     
+          token: ${{ secrets.NPM_TOKEN }}
