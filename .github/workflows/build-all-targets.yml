@@ -25,8 +25,9 @@ jobs:
           #  os: ubuntu-latest
           - target: x86_64-unknown-linux-gnu
             os: ubuntu-latest      
-          - target: x86_64-unknown-linux-musl
-            os: ubuntu-latest      
+          # musl disabled because it i was not able to launch grass there so far
+          #- target: x86_64-unknown-linux-musl
+          #  os: ubuntu-latest      
           #- target: x86_64-pc-windows-msvc 
           #  os: windows-latest                  
     steps:   
@@ -148,16 +149,17 @@ jobs:
         include:
           - node: '18'
             target: x86_64-unknown-linux-gnu
-            docker_image: "node:18-bookworm"
-          - node: '18'
-            target: x86_64-unknown-linux-musl
-            docker_image: "node:18-alpine"
+            docker_image: "node:18-bookworm" # debian 13
           - node: '20'
             target: x86_64-unknown-linux-gnu
-            docker_image: "node:20-bookworm"
-          - node: '20'
-            target: x86_64-unknown-linux-musl
-            docker_image: "node:20-alpine"                      
+            docker_image: "node:20-bookworm" # debian 13
+          # musl disabled because it i was not able to launch grass there so far
+          #- node: '18'
+          #  target: x86_64-unknown-linux-musl
+          #  docker_image: "node:18-alpine"
+          #- node: '20'
+          #  target: x86_64-unknown-linux-musl
+          #  docker_image: "node:20-alpine"                      
     container:
       image: ${{ matrix.docker_image }}
     steps:
@@ -179,7 +181,7 @@ jobs:
         run: npm run test
 
   merge-universal-macos:
-    if: false
+    if: false # permanently disabled but kept maybe for later?
     name: Build universal macOS binary
     needs:
       - build
