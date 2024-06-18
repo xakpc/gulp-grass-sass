@@ -224,7 +224,7 @@ jobs:
           dry-run: true
           
   publish:
-    name: Publish to NPM
+    name: Publish gulp-grass-sass to NPM
     runs-on: ubuntu-latest
     needs:
       - publish-dependencies   
@@ -241,10 +241,8 @@ jobs:
       - name: Move artifacts
         run: npm run artifacts
       - name: List packages
-        run: ls -R ./npm        
-      - name: prepublish (just to be sure)
-        run: npm run prepublishOnly        
-      - name: NPM Publish with prepublishOnly
+        run: ls -R ./npm            
+      - name: NPM Publish
         uses: JS-DevTools/npm-publish@v3.1.1
         with:
           token: ${{ secrets.NPM_TOKEN }}          
