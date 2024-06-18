@@ -39,10 +39,5 @@
     "test": "ava",
     "universal": "napi universal",
     "version": "napi version"
-  },
-  "optionalDependencies": {
-    "@xakpc/gulp-grass-sass-win32-arm64-msvc": "0.1.0",
-    "@xakpc/gulp-grass-sass-win32-x64-msvc": "0.1.0",
-    "@xakpc/gulp-grass-sass-win32-ia32-msvc": "0.1.0"
   }
 }
