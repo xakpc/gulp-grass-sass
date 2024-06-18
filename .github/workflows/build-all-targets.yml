@@ -31,24 +31,19 @@ jobs:
           - target: x86_64-pc-windows-msvc 
             os: windows-latest                  
     steps:   
-      - uses: actions/checkout@v4.1.7
-      
-      - name: Install Node.JS
+      - uses: actions/checkout@v4.1.7      
+      - name: install Node18
         uses: actions/setup-node@v4.0.2
         with:
-          node-version: 18
-          
+          node-version: 18          
       - name: Install Rust
         uses: dtolnay/rust-toolchain@v1
         with:
           toolchain: stable
-          target: ${{ matrix.target }}
-                  
-      - uses: bahmutov/npm-install@v1.6.0
-      
+          target: ${{ matrix.target }}                
+      - uses: bahmutov/npm-install@v1.6.0      
       - name: Build binaries
-        run: npm run build -- --target ${{ matrix.target }}
-        
+        run: npm run build -- --target ${{ matrix.target }}        
       - name: Upload artifacts
         uses: actions/upload-artifact@v4.3.3
         with:
@@ -56,49 +51,40 @@ jobs:
           path: ${{ github.workspace }}/**/*.node
           if-no-files-found: error
 
-  test-macos-windows:
-    if: false
+  test-macos-windows:    
     name: test-${{ matrix.target }}-node${{ matrix.node }}
     needs:
-      - build
-      
+      - build      
     env: 
       TARGET: ${{ matrix.target }}
-
-    runs-on: ${{ matrix.os }}
-    
+    runs-on: ${{ matrix.os }}    
     strategy:
       fail-fast: false
       matrix:      
         node: ['18','20']
-        os: [windows-latest,macos-12,macos-latest]
+        os: [windows-latest] #,macos-12,macos-latest]
         include:
           - target: x86_64-pc-windows-msvc
             os: windows-latest            
-          - target: x86_64-apple-darwin
-            os: macos-12
-          - target: aarch64-apple-darwin
-            os: macos-latest
+          #- target: x86_64-apple-darwin
+          #  os: macos-12
+          #- target: aarch64-apple-darwin
+          #  os: macos-latest
     steps:
-      - uses: actions/checkout@v4.1.7    
-      
+      - uses: actions/checkout@v4.1.7          
       - name: Install Node.JS
         uses: actions/setup-node@v4.0.2
         with:
-          node-version: ${{ matrix.node }}
-          
-      - uses: bahmutov/npm-install@v1.6.0
-      
+          node-version: ${{ matrix.node }}          
+      - uses: bahmutov/npm-install@v1.6.0      
       - name: Download artifacts
         uses: actions/download-artifact@v4.1.7
         with:
           name: bindings-${{ env.TARGET }}
-          path: .
-          
+          path: .          
       - name: List packages
         run: ls -R .
-        shell: bash
-        
+        shell: bash        
       - name: Test bindings
         run: npm run test
 
@@ -189,6 +175,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4.1.7       
       - uses: actions/setup-node@v4.0.2
+        with:
+          node-version: 18  
       - uses: bahmutov/npm-install@v1.6.0          
       - name: Download macOS x64 artifact
         uses: actions/download-artifact@v4.1.7
@@ -219,6 +207,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4.1.7       
       - uses: actions/setup-node@v4.0.2
+        with:
+          node-version: 18  
       - uses: bahmutov/npm-install@v1.6.0    
       - name: Download all artifacts
         uses: actions/download-artifact@v4.1.7
