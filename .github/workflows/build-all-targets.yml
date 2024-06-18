@@ -101,7 +101,7 @@ jobs:
       - name: Test bindings
         run: npm run test
 
-  test-linux:
+  test-ubuntu:
     name: test-${{ matrix.target }}-node${{ matrix.node }}
     runs-on: ubuntu-latest      
     needs:
@@ -148,13 +148,13 @@ jobs:
         include:
           - node: '18'
             target: x86_64-unknown-linux-gnu
-            docker_image: "node:18-buster"
+            docker_image: "node:18-bullseye"
           - node: '18'
             target: x86_64-unknown-linux-musl
             docker_image: "node:18-alpine"
           - node: '20'
             target: x86_64-unknown-linux-gnu
-            docker_image: "node:20-buster"
+            docker_image: "node:20-bullseye"
           - node: '20'
             target: x86_64-unknown-linux-musl
             docker_image: "node:20-alpine"                      
