@@ -17,5 +17,9 @@
   },
   "libc": [
     "glibc"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
 }
