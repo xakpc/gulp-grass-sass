@@ -17,10 +17,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          #- target: aarch64-apple-darwin
-          #  os: macos-latest
-          #- target: x86_64-apple-darwin
-          #  os: macos-12     
+          - target: aarch64-apple-darwin
+            os: macos-latest
+          - target: x86_64-apple-darwin
+            os: macos-12
           #- target: aarch64-unknown-linux-gnu
           #  os: ubuntu-latest
           - target: x86_64-unknown-linux-gnu
@@ -177,3 +177,31 @@ jobs:
         run: ls -R .      
       - name: Test bindings
         run: npm run test
+
+  merge-universal-macos:
+    name: Build universal macOS binary
+    needs:
+      - build
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4.1.7       
+      - uses: actions/setup-node@v4.0.2
+      - uses: bahmutov/npm-install@v1.6.0          
+      - name: Download macOS x64 artifact
+        uses: actions/download-artifact@v4.1.7
+        with:
+          name: bindings-x86_64-apple-darwin
+          path: artifacts
+      - name: Download macOS arm64 artifact
+        uses: actions/download-artifact@v4.1.7
+        with:
+          name: bindings-aarch64-apple-darwin
+          path: artifacts
+      - name: Combine binaries
+        run: npm run universal
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4.3.3
+        with:
+          name: bindings-universal-apple-darwin
+          path: ${{ github.workspace }}/**/*.node
+          if-no-files-found: error          
