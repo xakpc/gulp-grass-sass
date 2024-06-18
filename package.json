@@ -20,7 +20,7 @@
   "devDependencies": {
     "@napi-rs/cli": "^2.18.3",
     "ava": "^6.0.1",
-    "gulp": "^5.0.0",
+    "gulp": "^4.0.2",
     "gulp-buffer": "0.0.2"
   },
   "ava": {
@@ -43,5 +43,18 @@
     "@xakpc/gulp-grass-sass-darwin-x64": "0.1.0",
     "@xakpc/gulp-grass-sass-linux-x64-gnu": "0.1.0",
     "@xakpc/gulp-grass-sass-darwin-arm64": "0.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xakpc/gulp-grass-sass.git"
+  },
+  "keywords": [
+    "gulp",
+    "gulpplugin",
+    "sass"
+  ],
+  "homepage": "https://github.com/xakpc/gulp-grass-sass",
+  "bugs": {
+    "url": "https://github.com/xakpc/gulp-grass-sass/issues"
   }
 }
