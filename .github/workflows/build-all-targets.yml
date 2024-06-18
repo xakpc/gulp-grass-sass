@@ -17,10 +17,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          #- target: aarch64-apple-darwin
-          #  os: macos-latest
-          #- target: x86_64-apple-darwin
-          #  os: macos-12
+          - target: aarch64-apple-darwin
+            os: macos-latest
+          - target: x86_64-apple-darwin
+            os: macos-12
           #- target: aarch64-unknown-linux-gnu
           #  os: ubuntu-latest
           - target: x86_64-unknown-linux-gnu
@@ -66,10 +66,10 @@ jobs:
         include:
           - target: x86_64-pc-windows-msvc
             os: windows-latest            
-          #- target: x86_64-apple-darwin
-          #  os: macos-12
-          #- target: aarch64-apple-darwin
-          #  os: macos-latest
+          - target: x86_64-apple-darwin
+            os: macos-12
+          - target: aarch64-apple-darwin
+            os: macos-latest
     steps:
       - uses: actions/checkout@v4.1.7          
       - name: Install Node.JS
@@ -204,6 +204,9 @@ jobs:
       - test-macos-windows
       - test-ubuntu
       - test-linux-docker
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}        
     steps:
       - uses: actions/checkout@v4.1.7       
       - uses: actions/setup-node@v4.0.2
@@ -219,3 +222,18 @@ jobs:
       - name: List packages
         run: ls -R ./npm
         shell: bash          
+      - name: Publish npm
+        run: |
+          npm config set provenance true
+          if git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+$";
+          then
+            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+            npm publish --access public
+          elif git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+";
+          then
+            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+            npm publish --tag next --access public
+          else
+            echo "Not a release, skipping publish"
+          fi
+      
