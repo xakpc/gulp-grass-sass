@@ -12,7 +12,7 @@
 
 <div align="center">
   
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/xakpc/gulp-grass-sass/build-all-targets.yml?style=for-the-badge&logo=github)
+[![GitHub Actions Workflow Status][actions-shield]][actions-url]
 [![Stargazers][stars-shield]][stars-url]
 [![MIT License][license-shield]][license-url]
 [![NPM Downloads][npm-shield]][npm-url]
@@ -296,3 +296,5 @@ My personal blog: [xakpc.info](https://xakpc.info)
 [license-url]: https://github.com/xakpc/gulp-grass-sass/blob/master/LICENSE.txt
 [npm-shield]: https://img.shields.io/npm/dw/%40xakpc%2Fgulp-grass-sass?style=for-the-badge&logo=npm
 [npm-url]: https://www.npmjs.com/package/@xakpc/gulp-grass-sass
+[actions-shield]: https://img.shields.io/github/actions/workflow/status/xakpc/gulp-grass-sass/build-all-targets.yml?style=for-the-badge&logo=github
+[actions-url]: https://github.com/xakpc/gulp-grass-sass/actions
