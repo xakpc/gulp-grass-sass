@@ -5,12 +5,19 @@
 <!-- PROJECT SHIELDS 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
+
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+
 -->
 
-[![Build, Test, Publish](https://github.com/xakpc/gulp-grass-sass/actions/workflows/build-all-targets.yml/badge.svg)](https://github.com/xakpc/gulp-grass-sass/actions/workflows/build-all-targets.yml)
+<div align="center">
+  
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/xakpc/gulp-grass-sass/build-all-targets.yml?style=for-the-badge&logo=github)
+[![Stargazers][stars-shield]][stars-url]
+[![MIT License][license-shield]][license-url]
+[![NPM Downloads][npm-shield]][npm-url]
+
+</div>
 
 <!-- PROJECT LOGO -->
 <br />
@@ -285,5 +292,7 @@ My personal blog: [xakpc.info](https://xakpc.info)
 [stars-url]: https://github.com/xakpc/gulp-grass-sass/stargazers
 [issues-shield]: https://img.shields.io/github/issues/xakpc/gulp-grass-sass.svg?style=for-the-badge
 [issues-url]: https://github.com/xakpc/gulp-grass-sass/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/xakpc/gulp-grass-sass?style=for-the-badge
 [license-url]: https://github.com/xakpc/gulp-grass-sass/blob/master/LICENSE.txt
+[npm-shield]: https://img.shields.io/npm/dw/%40xakpc%2Fgulp-grass-sass?style=for-the-badge&logo=npm
+[npm-url]: https://www.npmjs.com/package/@xakpc/gulp-grass-sass
