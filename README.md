@@ -10,6 +10,8 @@
 [![MIT License][license-shield]][license-url]
 -->
 
+[![Build, Test, Publish](https://github.com/xakpc/gulp-grass-sass/actions/workflows/build-all-targets.yml/badge.svg)](https://github.com/xakpc/gulp-grass-sass/actions/workflows/build-all-targets.yml)
+
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
